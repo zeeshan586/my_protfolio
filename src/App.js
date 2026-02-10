@@ -6,6 +6,7 @@ import About from "./components/About/About";
 import Projects from "./components/Projects/Projects";
 import Footer from "./components/Footer";
 import Resume from "./components/Resume/ResumeNew";
+import ChatbotWidget from "./components/Chatbot/ChatbotWidget";
 import {
   BrowserRouter as Router,
   Route,
@@ -41,6 +42,7 @@ function App() {
           <Route path="*" element={<Home />} />
         </Routes>
         <Footer />
+        <ChatbotWidget />
       </div>
     </Router>
   );

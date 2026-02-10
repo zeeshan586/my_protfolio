@@ -4,10 +4,15 @@ import homeLogo from "../../Assets/home-main.svg";
 import Particle from "../Particle";
 import Home2 from "./Home2";
 import Type from "./Type";
+import Chatbot from "../Chatbot/Chatbot";
 
 function Home() {
   return (
     <section>
+      <div>
+
+        {/* ...footer */}
+      </div>
       <Container fluid className="home-section" id="home">
         <Particle />
         <Container className="home-content">
@@ -30,7 +35,20 @@ function Home() {
             <Col md={5} style={{ paddingBottom: 20 }}>
               <img src={homeLogo} alt="home pic" className="img-fluid" />
             </Col>
+            <Col md={12} className="home-pic">
+              {/* <h1 style={{ paddingBottom: 15 }} className="heading">
+                Career AI Assistant <span className="wave" role="img" aria-labelledby="wave">🤖</span>
+              </h1> */}
+              {/* ...other sections */}
+              <section id="career-ai-chatbot">
+                <Chatbot />
+              </section>
+            </Col>
           </Row>
+          {/* ...other sections */}
+          {/* <section id="career-ai-chatbot">
+            <Chatbot />
+          </section> */}
         </Container>
       </Container>
       <Home2 />
