@@ -38,7 +38,7 @@ const ChatbotMessage = ({
                     return message;
                 });
 
-                setState((state) => ({ ...state, messages: newMessages }));
+                // setState((state) => ({ ...state, messages: newMessages }));
             }, defaultDisableTime);
         };
 
