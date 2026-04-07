@@ -1,0 +1,54 @@
+query GetMyResumes @auth(level: USER, insecureReason: "This query fetches resumes associated with the logged-in user.") {
+  resumes(where: {userId: {eq_expr: "auth.uid"}}) {
+    id
+    fileName
+    uploadDate
+    description
+  }
+}
+
+mutation CreateJobDescription($title: String!, $descriptionContent: String!, $companyName: String, $jobUrl: String) @auth(level: USER) {
+  jobDescription_insert(data: {
+    userId_expr: "auth.uid",
+    title: $title,
+    descriptionContent: $descriptionContent,
+    submissionDate_expr: "request.time",
+    companyName: $companyName,
+    jobUrl: $jobUrl
+  }) {
+    id
+  }
+}
+
+mutation CreateAnalysisReport($resumeId: UUID!, $jobDescriptionId: UUID!, $keywordMatchScore: Float!, $missingSkillsIdentified: [String!]!, $suggestions: String) @auth(level: USER) {
+  analysisReport_insert(data: {
+    userId_expr: "auth.uid",
+    resumeId: $resumeId,
+    jobDescriptionId: $jobDescriptionId,
+    analysisDate_expr: "request.time",
+    keywordMatchScore: $keywordMatchScore,
+    missingSkillsIdentified: $missingSkillsIdentified,
+    suggestions: $suggestions
+  }) {
+    id
+  }
+}
+
+query GetAnalysisReportDetails($id: UUID!) @auth(level: USER) {
+  analysisReport(id: $id, where: {userId: {eq_expr: "auth.uid"}}) {
+    id
+    analysisDate
+    keywordMatchScore
+    missingSkillsIdentified
+    suggestions
+    resume {
+      fileName
+      fileUrl
+    }
+    jobDescription {
+      title
+      companyName
+      jobUrl
+    }
+  }
+}

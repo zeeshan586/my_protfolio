@@ -1,0 +1,34 @@
+type User @table {
+  displayName: String!
+  email: String!
+  createdAt: Timestamp!
+  photoUrl: String
+}
+
+type Resume @table {
+  user: User
+  fileName: String!
+  fileUrl: String!
+  uploadDate: Timestamp!
+  resumeTextContent: String!
+  description: String
+}
+
+type JobDescription @table {
+  user: User
+  title: String!
+  descriptionContent: String!
+  submissionDate: Timestamp!
+  companyName: String
+  jobUrl: String
+}
+
+type AnalysisReport @table {
+  user: User
+  resume: Resume
+  jobDescription: JobDescription
+  analysisDate: Timestamp!
+  keywordMatchScore: Float!
+  missingSkillsIdentified: [String]!
+  suggestions: String
+}

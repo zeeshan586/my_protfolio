@@ -1,0 +1,76 @@
+mutation SeedData @transaction @auth(level: USER, insecureReason: "Seed data operations are only accessible to authenticated users for initial setup and testing.") {
+  user_insertMany(data: [
+    {
+      id: "a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a11",
+      displayName: "John Doe",
+      email: "john.doe@example.com",
+      createdAt: "2023-01-01T10:00:00Z"
+    },
+    {
+      id: "b0eebc99-9c0b-4ef8-bb6d-6bb9bd380a22",
+      displayName: "Jane Smith",
+      email: "jane.smith@example.com",
+      createdAt: "2023-01-02T11:00:00Z"
+    }
+  ])
+  resume_insertMany(data: [
+    {
+      id: "c0eebc99-9c0b-4ef8-bb6d-6bb9bd380a33",
+      userId: "a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a11",
+      fileName: "john_doe_resume.pdf",
+      fileUrl: "https://example.com/john_doe_resume.pdf",
+      uploadDate: "2023-01-05T12:00:00Z",
+      resumeTextContent: "Experienced software engineer with a strong background in web development.",
+      description: "My primary resume for software engineering roles."
+    },
+    {
+      id: "d0eebc99-9c0b-4ef8-bb6d-6bb9bd380a44",
+      userId: "b0eebc99-9c0b-4ef8-bb6d-6bb9bd380a22",
+      fileName: "jane_smith_cv.docx",
+      fileUrl: "https://example.com/jane_smith_cv.docx",
+      uploadDate: "2023-01-06T13:00:00Z",
+      resumeTextContent: "Marketing professional with expertise in digital campaigns and social media.",
+      description: "Jane's marketing CV."
+    }
+  ])
+  jobDescription_insertMany(data: [
+    {
+      id: "e0eebc99-9c0b-4ef8-bb6d-6bb9bd380a55",
+      userId: "a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a11",
+      title: "Senior Software Engineer",
+      descriptionContent: "Seeking a highly motivated Senior Software Engineer to join our growing team.",
+      submissionDate: "2023-01-10T14:00:00Z",
+      companyName: "Tech Innovations Inc.",
+      jobUrl: "https://techinnovations.com/careers/senior-software-engineer"
+    },
+    {
+      id: "f0eebc99-9c0b-4ef8-bb6d-6bb9bd380a66",
+      userId: "b0eebc99-9c0b-4ef8-bb6d-6bb9bd380a22",
+      title: "Digital Marketing Specialist",
+      descriptionContent: "We are looking for a creative Digital Marketing Specialist to manage our online presence.",
+      submissionDate: "2023-01-11T15:00:00Z",
+      companyName: "Global Solutions Co.",
+      jobUrl: "https://globalsolutions.com/jobs/marketing-specialist"
+    }
+  ])
+  analysisReport_insertMany(data: [
+    {
+      userId: "a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a11",
+      resumeId: "c0eebc99-9c0b-4ef8-bb6d-6bb9bd380a33",
+      jobDescriptionId: "e0eebc99-9c0b-4ef8-bb6d-6bb9bd380a55",
+      analysisDate: "2023-01-12T16:00:00Z",
+      keywordMatchScore: 0.85,
+      missingSkillsIdentified: ["TypeScript", "Cloud Architecture"],
+      suggestions: "Focus on highlighting cloud experience and TypeScript proficiency."
+    },
+    {
+      userId: "b0eebc99-9c0b-4ef8-bb6d-6bb9bd380a22",
+      resumeId: "d0eebc99-9c0b-4ef8-bb6d-6bb9bd380a44",
+      jobDescriptionId: "f0eebc99-9c0b-4ef8-bb6d-6bb9bd380a66",
+      analysisDate: "2023-01-13T17:00:00Z",
+      keywordMatchScore: 0.92,
+      missingSkillsIdentified: ["SEO Analytics"],
+      suggestions: "Emphasize data-driven decision making and SEO tool usage."
+    }
+  ])
+}
